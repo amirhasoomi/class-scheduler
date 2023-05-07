@@ -1,1 +1,1 @@
-# django-challenge
+# class-scheduler
