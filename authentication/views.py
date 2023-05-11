@@ -41,13 +41,13 @@ class UsertypeView(viewsets.ModelViewSet):
 class MembersView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.filter(user__user_type=Conf.USER_TYPE_MEMBER)
+    queryset = Profile.objects.filter(user__user_type=Conf.USER_TYPE_USER)
 
 
 class JudgesView(generics.ListAPIView):
     permission_classes = (IsAuthenticated, IsAdmin)
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.filter(user__user_type=Conf.USER_TYPE_JUDGE)
+    queryset = Profile.objects.filter(user__user_type=Conf.USER_TYPE_ADMIN)
 
 
 class AllUsersView(generics.ListAPIView):

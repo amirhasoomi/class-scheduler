@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'authentication.apps.AuthenticationConfig',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [

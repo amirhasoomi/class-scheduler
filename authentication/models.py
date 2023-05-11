@@ -70,7 +70,7 @@ class Profile(CreationMixin):
 
         defaults = defaults or {}
         return cls.objects.get_or_create(**kwargs, defaults={
-            'user': User.create_deferred_user(user_type=Conf.USER_TYPE_MEMBER),
+            'user': User.create_deferred_user(user_type=Conf.USER_TYPE_USER),
             **defaults
         })
 
