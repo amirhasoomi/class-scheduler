@@ -1,19 +1,48 @@
 from rest_framework import serializers
-from .models import Schedule, Location
+from .models import (Schedule, Plato, Field, Date, Lesson, Exam,)
 
 
-class LocationSerializer(serializers.ModelSerializer):
+class FeildSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Location
-        fields = ('name',)
+        model = Field
+        fields = ('name', 'code',)
+
+
+class PLatoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plato
+        fields = ('name', 'building', 'capacity',)
+
+
+class DateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Date
+        fields = ('start_time', 'end_time', 'date_of_week',)
+
+
+class LessonSerializer(serializers.ModelSerializer):
+    field = FeildSerializer()
+
+    class Meta:
+        model = Lesson
+        fields = ('name', 'code', 'field', 'theory_course', 'practical_course')
+
+
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exam
+        fields = ('name', 'date', 'start_time', 'end_time', 'location',)
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
-    location = LocationSerializer()
+    date = DateSerializer()
+    plato = PLatoSerializer()
+    lesson = LessonSerializer()
+    exam = ExamSerializer()
 
     class Meta:
         model = Schedule
-        fields = ('name', 'location')
+        fields = ('name', 'date', 'plato', 'lesson', 'professor', 'capacity', 'exam',)
 
     def validate(self, attrs):
         # username = attrs['username'].lower()
